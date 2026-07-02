@@ -9,6 +9,9 @@ import '../../../core/widgets/app_logo.dart';
 import '../../../core/widgets/gradient_button.dart';
 import '../../../core/widgets/social_auth_button.dart';
 import '../viewmodel/login_viewmodel.dart';
+import '../widgets/login_form_field.dart';
+import '../widgets/login_wave_clipper.dart';
+import '../widgets/or_divider.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -49,10 +52,6 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            // White section — non-flex: takes exactly its content height, no more.
-            // In a Column with an Expanded sibling, Flutter gives non-flex children
-            // unconstrained height, so this shrink-wraps to content size (~380dp).
-            // SingleChildScrollView activates only when the keyboard pushes content up.
             SingleChildScrollView(
               keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
               child: Padding(
@@ -83,12 +82,12 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     const SizedBox(height: 16),
-                    _LabeledField(
+                    const LoginFormField(
                       label: AppStrings.emailOrPhoneLabel,
                       hint: AppStrings.emailOrPhoneHint,
                     ),
                     const SizedBox(height: 10),
-                    _LabeledField(
+                    LoginFormField(
                       label: AppStrings.passwordLabel,
                       hint: AppStrings.passwordHint,
                       obscureText: _obscurePassword,
@@ -100,8 +99,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           color: AppColors.textHint,
                           size: 20,
                         ),
-                        onPressed: () =>
-                            setState(() => _obscurePassword = !_obscurePassword),
+                        onPressed: () => setState(() => _obscurePassword = !_obscurePassword),
                       ),
                     ),
                     const SizedBox(height: 2),
@@ -134,12 +132,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
             ),
-
-            // Green wave section — Expanded: fills ALL remaining height after white content.
-            // This eliminates the empty gap that appeared when white was Expanded.
             Expanded(
               child: ClipPath(
-                clipper: _TopWaveClipper(),
+                clipper: LoginWaveClipper(),
                 child: Container(
                   width: double.infinity,
                   decoration: const BoxDecoration(
@@ -153,7 +148,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const _OrDivider(),
+                      const OrDivider(),
                       const SizedBox(height: 16),
                       Consumer<LoginViewModel>(
                         builder: (context, viewModel, _) {
@@ -200,123 +195,4 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
-}
-
-class _LabeledField extends StatelessWidget {
-  const _LabeledField({
-    required this.label,
-    required this.hint,
-    this.obscureText = false,
-    this.suffixIcon,
-  });
-
-  final String label;
-  final String hint;
-  final bool obscureText;
-  final Widget? suffixIcon;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          label,
-          style: const TextStyle(
-            fontSize: 13,
-            color: AppColors.textSecondary,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        const SizedBox(height: 6),
-        TextField(
-          obscureText: obscureText,
-          style: const TextStyle(fontSize: 14),
-          decoration: InputDecoration(
-            hintText: hint,
-            hintStyle: const TextStyle(
-              color: AppColors.textHint,
-              fontSize: 14,
-            ),
-            suffixIcon: suffixIcon,
-            contentPadding:
-                const EdgeInsets.symmetric(horizontal: 16, vertical: 13),
-            fillColor: const Color(0xFFF2F3F5),
-            filled: true,
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide.none,
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide.none,
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide.none,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class _OrDivider extends StatelessWidget {
-  const _OrDivider();
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: Container(height: 1, color: Colors.white.withValues(alpha: 0.35)),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12),
-          child: Text(
-            AppStrings.orContinueWith,
-            style: TextStyle(
-              color: Colors.white.withValues(alpha: 0.9),
-              fontSize: 13,
-              fontWeight: FontWeight.w400,
-            ),
-          ),
-        ),
-        Expanded(
-          child: Container(height: 1, color: Colors.white.withValues(alpha: 0.35)),
-        ),
-      ],
-    );
-  }
-}
-
-class _TopWaveClipper extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    final path = Path();
-    // Left edge starts below top to create wave effect
-    path.lineTo(0, 48);
-
-    // First curve: rises to create left hill, dips to center valley
-    path.cubicTo(
-      size.width * 0.18, -8,
-      size.width * 0.40, 68,
-      size.width * 0.66, 56,
-    );
-    // Second curve: smoothly rises toward right edge
-    path.cubicTo(
-      size.width * 0.80, 48,
-      size.width * 0.90, 20,
-      size.width, 12,
-    );
-
-    path.lineTo(size.width, size.height);
-    path.lineTo(0, size.height);
-    path.close();
-    return path;
-  }
-
-  @override
-  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }

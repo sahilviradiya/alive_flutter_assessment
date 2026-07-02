@@ -1,13 +1,27 @@
-<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#B6F500"/>
-      <stop offset="100%" stop-color="#3DBE29"/>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#d5e156;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#007d32;stop-opacity:1" />
     </linearGradient>
   </defs>
-  <rect x="10" y="10" width="180" height="180" rx="48" fill="url(#logoGradient)"/>
-  <text x="100" y="112" font-family="Segoe UI, Arial, sans-serif" font-size="52" font-weight="700"
-        text-anchor="middle" fill="#FFFFFF">Alive</text>
-  <rect x="70" y="128" width="60" height="34" rx="10" fill="#FFFFFF"/>
-  <path d="M92 136 L92 154 L110 145 Z" fill="#3DBE29"/>
+
+  <!-- Background Rounded Square -->
+  <rect width="512" height="512" rx="120" fill="url(#grad)" />
+
+  <!-- White Wavy Bottom Section -->
+  <path d="M -10 522 L -10 440 C 100 440 180 340 256 340 C 332 340 412 440 522 440 L 522 522 Z" fill="white" />
+
+  <!-- "Alive" Text -->
+  <text x="256" y="275" font-family="'Arial Rounded MT Bold', 'Helvetica Rounded', Arial, sans-serif" font-size="155" font-weight="bold" fill="white" text-anchor="middle">Alive</text>
+
+  <!-- Video Camera Icon (Green) -->
+  <g transform="translate(176, 375) scale(0.9)">
+    <!-- Camera Body -->
+    <rect x="0" y="0" width="160" height="110" rx="35" fill="#2E7D32" />
+    <!-- Camera Lens/Side -->
+    <path d="M 160 35 L 205 10 V 100 L 160 75 Z" fill="#2E7D32" stroke="#2E7D32" stroke-width="8" stroke-linejoin="round" />
+    <!-- White Play Triangle -->
+    <path d="M 65 30 L 110 55 L 65 80 Z" fill="white" stroke="white" stroke-width="8" stroke-linejoin="round" />
+  </g>
 </svg>

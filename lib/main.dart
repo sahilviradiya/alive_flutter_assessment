@@ -26,9 +26,6 @@ Future<void> main() async {
   runApp(const AliveApp());
 }
 
-/// Root widget wiring up dependency injection (via [Provider]) and the
-/// app's theme/routing. Kept intentionally simple/manual rather than
-/// pulling in a DI package, since the object graph is small.
 class AliveApp extends StatelessWidget {
   const AliveApp({super.key});
 
