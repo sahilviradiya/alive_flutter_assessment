@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "693887420711",
+    "project_id": "flutter-assessment-d318a",
+    "storage_bucket": "flutter-assessment-d318a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:693887420711:android:6acfb1751f717246080102",
+        "android_client_info": {
+          "package_name": "com.app.alive_flutter_assessment"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDfE7PF5jBa6jhbbna367QlvDjaCtj2Klo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

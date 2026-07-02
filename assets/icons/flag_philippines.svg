@@ -1,0 +1,13 @@
+<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <clipPath id="phCircle">
+      <circle cx="10" cy="10" r="9"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#phCircle)">
+    <rect x="0" y="1" width="20" height="8" fill="#0038A8"/>
+    <rect x="0" y="9" width="20" height="10" fill="#CE1126"/>
+    <path d="M1 1 L8.5 10 L1 19 Z" fill="#FFFFFF"/>
+    <circle cx="4.6" cy="10" r="1.5" fill="#FCD116"/>
+  </g>
+</svg>

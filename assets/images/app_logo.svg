@@ -1,0 +1,13 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#B6F500"/>
+      <stop offset="100%" stop-color="#3DBE29"/>
+    </linearGradient>
+  </defs>
+  <rect x="10" y="10" width="180" height="180" rx="48" fill="url(#logoGradient)"/>
+  <text x="100" y="112" font-family="Segoe UI, Arial, sans-serif" font-size="52" font-weight="700"
+        text-anchor="middle" fill="#FFFFFF">Alive</text>
+  <rect x="70" y="128" width="60" height="34" rx="10" fill="#FFFFFF"/>
+  <path d="M92 136 L92 154 L110 145 Z" fill="#3DBE29"/>
+</svg>
